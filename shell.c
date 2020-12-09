@@ -19,7 +19,7 @@ char *getcwd(char *buf, size_t size);
 char cwd[100];
 void sighandler(int);
 pid_t pid;
-//char getenv(const char *name)
+char getenv(const char *name)
 
 int main() {
   
@@ -99,7 +99,6 @@ int main() {
         // cd: changes the current working directory
         if (strcmp(arguments[0], "cd") == 0 ){
           chdir(arguments[1]);
-          //printf("cd function \n");
         } // pwd: prints the current working directory
         else if (strcmp(arguments[0], "pwd") == 0){ 
           if (getcwd(cwd, sizeof(cwd)) == NULL){
@@ -108,7 +107,6 @@ int main() {
           }
           printf("%s \n", cwd);
           fflush(stdout);
-          //printf("pwd function \n");
         } // echo: prints a message and the values of environment variables
        else if (strcmp(arguments[0], "echo") == 0){ // Check for $
           while (arguments[k] != NULL){
@@ -116,15 +114,12 @@ int main() {
             k++;
           }
          printf("\n");
-          //printf("\n echo function \n");
-        }
-        else if (strcmp(arguments[0], "exit") == 0 ){  // exit: terminates the shell
+        } // exit: terminates the shell
+        else if (strcmp(arguments[0], "exit") == 0 ){  
           exit(0);
         } // env: prints the current values of the environment variables
         else if (strcmp(arguments[0], "env") == 0 ){
-          //getenv(arguments[1]);
           printf("%s \n", getenv(arguments[1]));
-          //printf("env function \n");
         } // setenv: sets an environment variable
         else if (strcmp(arguments[0], "setenv") == 0){
           newenv[n] = strtok(arguments[1], " = ");
@@ -133,7 +128,7 @@ int main() {
             n++;
             newenv[n] = strtok(NULL, " = ");
           }
-          setenv(newenv[0], newenv[1], 1); //printf("setenv function \n");
+          setenv(newenv[0], newenv[1], 1);
         }
         else {
           if (strcmp(arguments[i-1], "&") == 0){
