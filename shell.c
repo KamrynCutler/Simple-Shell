@@ -19,7 +19,7 @@ char *getcwd(char *buf, size_t size);
 char cwd[100];
 void sighandler(int);
 pid_t pid;
-char getenv(const char *name)
+//char getenv(const char *name)
 
 int main() {
   
